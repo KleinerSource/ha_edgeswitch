@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EdgeSwitch 端口状态</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <!-- 头部统计信息 -->
+        <div class="header-stats">
+            <div class="stat-card">
+                <div class="stat-icon">
+                    <span class="material-icons">network_check</span>
+                </div>
+                <div class="stat-content">
+                    <div class="stat-value" id="totalThroughput">--</div>
+                    <div class="stat-label">总流量</div>
+                </div>
+            </div>
+            
+            <div class="stat-card">
+                <div class="stat-icon">
+                    <span class="material-icons">electrical_services</span>
+                </div>
+                <div class="stat-content">
+                    <div class="stat-value" id="activePorts">--</div>
+                    <div class="stat-label">活跃端口</div>
+                </div>
+            </div>
+            
+            <div class="stat-card">
+                <div class="stat-icon">
+                    <span class="material-icons">power</span>
+                </div>
+                <div class="stat-content">
+                    <div class="stat-value" id="totalPoePower">--</div>
+                    <div class="stat-label">PoE 功率</div>
+                </div>
+            </div>
+            
+            <div class="stat-card">
+                <div class="stat-icon">
+                    <span class="material-icons">memory</span>
+                </div>
+                <div class="stat-content">
+                    <div class="stat-value" id="cpuUsage">--</div>
+                    <div class="stat-label">CPU 使用率</div>
+                </div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-icon">
+                    <span class="material-icons">hub</span>
+                </div>
+                <div class="stat-content">
+                    <div class="stat-value">
+                        <span id="portInterfaces">--</span> PORT / <span id="lagInterfaces">--</span> LAG
+                    </div>
+                    <div class="stat-label">接口类型</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 端口可视化图 -->
+        <div class="port-visualization">
+            <h3>端口状态概览</h3>
+            <div class="port-grid" id="portGrid">
+                <!-- 端口状态图标将通过 JavaScript 动态生成 -->
+            </div>
+            <div class="legend">
+                <div class="legend-item">
+                    <div class="legend-color active"></div>
+                    <span>活跃</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color poe"></div>
+                    <span>PoE</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color inactive"></div>
+                    <span>未连接</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color disabled"></div>
+                    <span>禁用</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- 端口详细列表 -->
+        <div class="port-table-container">
+            <div class="table-header">
+                <h3>端口详细信息</h3>
+                <div class="refresh-controls">
+                    <div class="connection-status" id="connectionStatus">
+                        <span class="status-dot" id="statusDot"></span>
+                        <span class="status-text" id="statusText">连接中...</span>
+                    </div>
+                    <button id="refreshBtn" class="refresh-btn">
+                        <span class="material-icons">refresh</span>
+                        刷新
+                    </button>
+                    <div class="auto-refresh">
+                        <label>
+                            <input type="checkbox" id="autoRefresh" checked>
+                            自动刷新 (30s)
+                        </label>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="table-wrapper">
+                <table class="port-table">
+                    <thead>
+                        <tr>
+                            <th>端口</th>
+                            <th>名称</th>
+                            <th>状态</th>
+                            <th>速率</th>
+                            <th>接收 (Rx)</th>
+                            <th>发送 (Tx)</th>
+                            <th>PoE 状态</th>
+                            <th>PoE 功率</th>
+                            <th>模式</th>
+                            <th>操作</th>
+                        </tr>
+                    </thead>
+                    <tbody id="portTableBody">
+                        <!-- 端口数据将通过 JavaScript 动态填充 -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- 加载状态 -->
+        <div class="loading" id="loading">
+            <div class="loading-spinner"></div>
+            <div class="loading-text">正在加载端口数据...</div>
+        </div>
+
+        <!-- 错误提示 -->
+        <div class="error-message" id="errorMessage" style="display: none;">
+            <div class="error-icon">
+                <span class="material-icons">error</span>
+            </div>
+            <div class="error-content">
+                <div class="error-title">连接失败</div>
+                <div class="error-text" id="errorText"></div>
+                <button class="retry-btn" onclick="loadData()">重试</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

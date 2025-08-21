@@ -1,0 +1,38 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "配置 EdgeSwitch",
+        "description": "请输入您的 Ubiquiti UniFi 交换机连接信息。\n\n示例 URL: {url_example}\n\n注意：大多数设备使用自签名证书，建议禁用 SSL 验证。",
+        "data": {
+          "url": "URL",
+          "username": "用户名",
+          "password": "密码",
+          "verify_ssl": "验证 SSL 证书（推荐禁用）",
+          "update_interval": "更新间隔（秒）"
+        }
+      }
+    },
+    "error": {
+      "cannot_connect": "无法连接到设备，请检查 URL 和网络连接",
+      "invalid_auth": "用户名或密码错误",
+      "invalid_url": "URL 格式无效，请输入有效的 URL（例如：https://10.0.0.2）",
+      "timeout": "连接超时，请检查网络连接和设备状态",
+      "unknown": "发生未知错误，请检查日志获取详细信息"
+    },
+    "abort": {
+      "already_configured": "此设备已经配置过了"
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "EdgeSwitch 选项",
+        "description": "配置 EdgeSwitch 集成选项。\n\n更新间隔：{min_interval}-{max_interval} 秒（当前：{current_interval}秒）",
+        "data": {
+          "update_interval": "更新间隔（秒）"
+        }
+      }
+    }
+  }
+}

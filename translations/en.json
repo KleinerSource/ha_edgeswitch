@@ -1,0 +1,38 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Configure EdgeSwitch",
+        "description": "Please enter your Ubiquiti UniFi switch connection information.\n\nExample URL: {url_example}\n\nNote: Most devices use self-signed certificates, recommend disabling SSL verification.",
+        "data": {
+          "url": "URL",
+          "username": "Username",
+          "password": "Password",
+          "verify_ssl": "Verify SSL Certificate (recommended to disable)",
+          "update_interval": "Update Interval (seconds)"
+        }
+      }
+    },
+    "error": {
+      "cannot_connect": "Cannot connect to device, please check URL and network connection",
+      "invalid_auth": "Invalid username or password",
+      "invalid_url": "Invalid URL format, please enter a valid URL (e.g., https://10.0.0.2)",
+      "timeout": "Connection timeout, please check network connection and device status",
+      "unknown": "Unknown error occurred, please check logs for details"
+    },
+    "abort": {
+      "already_configured": "This device is already configured"
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "EdgeSwitch Options",
+        "description": "Configure EdgeSwitch integration options.\n\nUpdate Interval: {min_interval}-{max_interval} seconds (current: {current_interval}s)",
+        "data": {
+          "update_interval": "Update Interval (seconds)"
+        }
+      }
+    }
+  }
+}
